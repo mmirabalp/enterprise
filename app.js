@@ -1,8 +1,10 @@
 // Order the system to reguire express library.
 const express = require('express');
-
-
+const bodyParser = require('body-parser');
 const app = express();
+
+app.use(bodyParser.json({}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 const places = [
 	{
@@ -25,6 +27,10 @@ const places = [
 //Declaring route for '/' and function with object (request, resources) 
 app.get('/',(req, res)=>{
 	res.json(places);
+});
+
+app.post('/',(req, res)=>{
+	res.json(req.body.name);
 });
 
 // Static service
